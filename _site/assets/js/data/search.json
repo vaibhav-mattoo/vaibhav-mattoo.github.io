@@ -1,5 +1,21 @@
 [
   {
+    "title": "lecture_2_circuits_and_packets",
+    "url": "/posts/lecture-2-circuits-and-packets/",
+    "categories": "Networking, Lectures",
+    "tags": "ece438, networking",
+    "date": "2025-06-17 06:49:00 -0700",
+    "content": "Basic definition of network and structure of internet"
+  },
+  {
+    "title": "lecture_1_overview",
+    "url": "/posts/lecture-1-overview/",
+    "categories": "Networking, Lectures",
+    "tags": "ece438, networking",
+    "date": "2025-06-17 06:16:00 -0700",
+    "content": "Basic definition of network and structure of internet"
+  },
+  {
     "title": "Hiding Network Attributes - Changing your 802.11 nickname",
     "url": "/posts/changing-your-802-11-nickname/",
     "categories": "Security, Anonymity",

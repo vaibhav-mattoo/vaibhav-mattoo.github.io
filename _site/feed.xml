@@ -4,7 +4,7 @@
   <id>http://localhost:4000/</id>
   <title>Vaibhav Mattoo</title>
   <subtitle>A collection of notes I about various topics.</subtitle>
-  <updated>2025-06-14T07:23:19-07:00</updated>
+  <updated>2025-06-17T11:50:25-07:00</updated>
   <author>
     <name>Vaibhav Mattoo</name>
     <uri>http://localhost:4000/</uri>
@@ -17,6 +17,58 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>lecture_2_circuits_and_packets</title>
+    <link href="http://localhost:4000/posts/lecture-2-circuits-and-packets/" rel="alternate" type="text/html" title="lecture_2_circuits_and_packets" />
+    <published>2025-06-17T06:49:00-07:00</published>
+  
+    <updated>2025-06-17T06:49:00-07:00</updated>
+  
+    <id>http://localhost:4000/posts/lecture-2-circuits-and-packets/</id>
+    <content type="text/html" src="http://localhost:4000/posts/lecture-2-circuits-and-packets/" />
+    <author>
+      <name>Vaibhav Mattoo</name>
+    </author>
+
+  
+    
+    <category term="Networking" />
+    
+    <category term="Lectures" />
+    
+  
+
+  <summary>Basic definition of network and structure of internet</summary>
+
+  </entry>
+
+  
+  <entry>
+    <title>lecture_1_overview</title>
+    <link href="http://localhost:4000/posts/lecture-1-overview/" rel="alternate" type="text/html" title="lecture_1_overview" />
+    <published>2025-06-17T06:16:00-07:00</published>
+  
+    <updated>2025-06-17T06:16:00-07:00</updated>
+  
+    <id>http://localhost:4000/posts/lecture-1-overview/</id>
+    <content type="text/html" src="http://localhost:4000/posts/lecture-1-overview/" />
+    <author>
+      <name>Vaibhav Mattoo</name>
+    </author>
+
+  
+    
+    <category term="Networking" />
+    
+    <category term="Lectures" />
+    
+  
+
+  <summary>Basic definition of network and structure of internet</summary>
+
+  </entry>
 
   
   <entry>
@@ -76,7 +128,7 @@
     <link href="http://localhost:4000/posts/changing-your-mac-address/" rel="alternate" type="text/html" title="Hiding Network Attributes - Spoofing your MAC address" />
     <published>2025-06-13T11:17:00-07:00</published>
   
-    <updated>2025-06-13T11:17:00-07:00</updated>
+    <updated>2025-06-17T06:55:01-07:00</updated>
   
     <id>http://localhost:4000/posts/changing-your-mac-address/</id>
     <content type="text/html" src="http://localhost:4000/posts/changing-your-mac-address/" />
