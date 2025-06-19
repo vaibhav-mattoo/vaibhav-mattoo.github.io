@@ -1,5 +1,13 @@
 [
   {
+    "title": "Sorting algorithms",
+    "url": "/posts/sorting-algorithms/",
+    "categories": "DSA, Array Algorithms",
+    "tags": "Named Algorithms",
+    "date": "2025-06-19 05:25:00 -0700",
+    "content": "Some theory and implementation of major array sorting algorithms in C++"
+  },
+  {
     "title": "lecture_2_circuits_and_packets",
     "url": "/posts/lecture-2-circuits-and-packets/",
     "categories": "Networking, Lectures",
