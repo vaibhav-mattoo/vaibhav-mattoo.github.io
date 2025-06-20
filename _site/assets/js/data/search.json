@@ -1,9 +1,17 @@
 [
   {
     "title": "Sorting algorithms",
+    "url": "/posts/array-leader-second-largest-element-in-the-array/",
+    "categories": "DSA, Array Algorithms",
+    "tags": "",
+    "date": "2025-06-19 05:25:00 -0700",
+    "content": "Some theory and implementation of major array sorting algorithms in C++"
+  },
+  {
+    "title": "Sorting algorithms",
     "url": "/posts/sorting-algorithms/",
     "categories": "DSA, Array Algorithms",
-    "tags": "Named Algorithms",
+    "tags": "Named Algorithms, Sorting",
     "date": "2025-06-19 05:25:00 -0700",
     "content": "Some theory and implementation of major array sorting algorithms in C++"
   },

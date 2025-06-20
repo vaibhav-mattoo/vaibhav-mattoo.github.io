@@ -4,7 +4,7 @@
   <id>http://localhost:4000/</id>
   <title>Vaibhav Mattoo</title>
   <subtitle>A collection of notes I about various topics.</subtitle>
-  <updated>2025-06-19T07:31:00-07:00</updated>
+  <updated>2025-06-20T07:40:49-07:00</updated>
   <author>
     <name>Vaibhav Mattoo</name>
     <uri>http://localhost:4000/</uri>
@@ -17,6 +17,32 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Sorting algorithms</title>
+    <link href="http://localhost:4000/posts/array-leader-second-largest-element-in-the-array/" rel="alternate" type="text/html" title="Sorting algorithms" />
+    <published>2025-06-19T05:25:00-07:00</published>
+  
+    <updated>2025-06-19T05:25:00-07:00</updated>
+  
+    <id>http://localhost:4000/posts/array-leader-second-largest-element-in-the-array/</id>
+    <content type="text/html" src="http://localhost:4000/posts/array-leader-second-largest-element-in-the-array/" />
+    <author>
+      <name>Vaibhav Mattoo</name>
+    </author>
+
+  
+    
+    <category term="DSA" />
+    
+    <category term="Array Algorithms" />
+    
+  
+
+  <summary>Some theory and implementation of major array sorting algorithms in C++</summary>
+
+  </entry>
 
   
   <entry>
@@ -119,32 +145,6 @@
   
 
   <summary>Various ways to change your 802.11 nickname to avoid detection</summary>
-
-  </entry>
-
-  
-  <entry>
-    <title>Getting started with Raspberry Pi 5</title>
-    <link href="http://localhost:4000/posts/getting-started-with-raspberry-pi-5/" rel="alternate" type="text/html" title="Getting started with Raspberry Pi 5" />
-    <published>2025-06-14T04:35:00-07:00</published>
-  
-    <updated>2025-06-14T04:35:00-07:00</updated>
-  
-    <id>http://localhost:4000/posts/getting-started-with-raspberry-pi-5/</id>
-    <content type="text/html" src="http://localhost:4000/posts/getting-started-with-raspberry-pi-5/" />
-    <author>
-      <name>Vaibhav Mattoo</name>
-    </author>
-
-  
-    
-    <category term="IOT" />
-    
-    <category term="Microcontrollers" />
-    
-  
-
-  <summary>Startup instructions for the Raspberry Pi 5</summary>
 
   </entry>
 

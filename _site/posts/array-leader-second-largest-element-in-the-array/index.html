@@ -30,26 +30,26 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <meta name="generator" content="Jekyll v4.4.1" />
-<meta property="og:title" content="Archives" />
+<meta property="og:title" content="Sorting algorithms" />
 <meta property="og:locale" content="en" />
-<meta name="description" content="A collection of notes I about various topics." />
-<meta property="og:description" content="A collection of notes I about various topics." />
-<link rel="canonical" href="http://localhost:4000/archives/" />
-<meta property="og:url" content="http://localhost:4000/archives/" />
+<meta name="description" content="Some theory and implementation of major array sorting algorithms in C++" />
+<meta property="og:description" content="Some theory and implementation of major array sorting algorithms in C++" />
+<link rel="canonical" href="http://localhost:4000/posts/array-leader-second-largest-element-in-the-array/" />
+<meta property="og:url" content="http://localhost:4000/posts/array-leader-second-largest-element-in-the-array/" />
 <meta property="og:site_name" content="Vaibhav Mattoo" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2025-06-20T07:40:49-07:00" />
+<meta property="article:published_time" content="2025-06-19T05:25:00-07:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Archives" />
+<meta property="twitter:title" content="Sorting algorithms" />
 <meta name="twitter:site" content="@" />
 <meta name="google-site-verification" content="J8nWOgjEcwrZYQchRvklN7082IxBQCUr2z4OqAx7b54" />
 <meta name="msvalidate.01" content="9BBCBF80E383119A97618889004C5A18" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-06-20T07:40:49-07:00","datePublished":"2025-06-20T07:40:49-07:00","description":"A collection of notes I about various topics.","headline":"Archives","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/archives/"},"url":"http://localhost:4000/archives/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-06-19T05:25:00-07:00","datePublished":"2025-06-19T05:25:00-07:00","description":"Some theory and implementation of major array sorting algorithms in C++","headline":"Sorting algorithms","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/array-leader-second-largest-element-in-the-array/"},"url":"http://localhost:4000/posts/array-leader-second-largest-element-in-the-array/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>Archives | Vaibhav Mattoo
+  <title>Sorting algorithms | Vaibhav Mattoo
   </title>
 
   <!--
@@ -113,9 +113,16 @@
   <!-- 3rd-party Dependencies -->
 
   
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tocbot@4.32.2/dist/tocbot.min.css">
   
 
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.min.css">
+  
+
+  
+    <!-- Image Popup -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox@3.3.0/dist/css/glightbox.min.css">
   
 
   <!-- Scripts -->
@@ -131,6 +138,13 @@
 <!-- layout specified -->
 
 
+  
+
+  
+    <!-- image lazy-loading & popup & clipboard -->
+    
+  
+
 
 
 
@@ -180,9 +194,37 @@
 
   
 
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
 
 
-  <script defer src="https://cdn.jsdelivr.net/combine/npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js,npm/dayjs@1.11.13/dayjs.min.js,npm/dayjs@1.11.13/locale/en.js,npm/dayjs@1.11.13/plugin/relativeTime.js,npm/dayjs@1.11.13/plugin/localizedFormat.js"></script>
+
+  <script defer src="https://cdn.jsdelivr.net/combine/npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js,npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.umd.min.js,npm/glightbox@3.3.0/dist/js/glightbox.min.js,npm/clipboard@2.0.11/dist/clipboard.min.js,npm/dayjs@1.11.13/dayjs.min.js,npm/dayjs@1.11.13/locale/en.js,npm/dayjs@1.11.13/plugin/relativeTime.js,npm/dayjs@1.11.13/plugin/localizedFormat.js,npm/tocbot@4.32.2/dist/tocbot.min.js"></script>
 
 
 
@@ -190,11 +232,20 @@
 
 
 
-<script defer src="/assets/js/dist/misc.min.js"></script>
+<script defer src="/assets/js/dist/post.min.js"></script>
 
+
+  <!-- MathJax -->
+  <script src="/assets/js/data/mathjax.js"></script>
+  <script async src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
 
 
 <!-- Pageviews -->
+
+  
+
+  
 
 
 
@@ -248,7 +299,7 @@
         </li>
         <!-- .nav-item -->
       
-        <li class="nav-item active">
+        <li class="nav-item">
           <a href="/archives/" class="nav-link">
             <i class="fa-fw fas fa-archive"></i>
             
@@ -344,8 +395,10 @@
           
         
           
+        
+          
             
-              <span>Archives</span>
+              <span>Sorting algorithms</span>
             
 
           
@@ -359,7 +412,7 @@
     </button>
 
     <div id="topbar-title">
-      Archives
+      Post
     </div>
 
     <button type="button" id="search-trigger" class="btn btn-link" aria-label="Search">
@@ -385,144 +438,336 @@
         <div class="row flex-grow-1">
           <main aria-label="Main Content" class="col-12 col-lg-11 col-xl-9 px-md-4">
             
-              
+              <!-- Refactor the HTML structure -->
 
 
 
-<article class="px-1">
+<!--
+  In order to allow a wide table to scroll horizontally,
+  we suround the markdown table with `<div class="table-wrapper">` and `</div>`
+-->
+
+
+
+<!--
+  Fixed kramdown code highlight rendering:
+  https://github.com/penibelst/jekyll-compress-html/issues/101
+  https://github.com/penibelst/jekyll-compress-html/issues/71#issuecomment-188144901
+-->
+
+
+
+<!-- Change the icon of checkbox -->
+
+
+
+<!-- Handle images -->
+
+
+
+
+
+<!-- Add header for code snippets -->
+
+
+
+<!-- Create heading anchors -->
+
+
+
+
+
+  
+  
+
   
     
     
-    <h1 class="dynamic-title">
-      Archives
-    </h1>
-    <div class="content">
+
+    
+      
+        
+        
       
 
+      
+      
 
+      
+      
+      
 
+      
+    
 
+    
+  
 
+  
+  
 
-<div id="archives" class="pl-xl-3">
   
     
+    
 
     
       
+        
+        
+      
 
-      <time class="year lead d-block">2025</time>
-      <ul class="list-unstyled">
+      
+      
+
+      
+      
+      
 
       
     
 
-    <li>
-      
-      <span class="date day" data-ts="1750335900" data-df="DD">19</span>
-      <span class="date month small text-muted ms-1" data-ts="1750335900" data-df="MMM">
-        Jun
+    
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+
+
+
+<!-- return -->
+
+
+
+
+
+
+
+
+
+
+<article class="px-1" data-toc="true">
+  <header>
+    <h1 data-toc-skip>Sorting algorithms</h1>
+    
+      <p class="post-desc fw-light mb-4">Some theory and implementation of major array sorting algorithms in C++</p>
+    
+
+    <div class="post-meta text-muted">
+      <!-- published date -->
+      <span>
+        Posted
+        <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1750335900"
+  data-df="ll"
+  
+    data-bs-toggle="tooltip" data-bs-placement="bottom"
+  
+>
+  Jun 19, 2025
+</time>
+
       </span>
-      <a href="/posts/array-leader-second-largest-element-in-the-array/">Sorting algorithms</a>
-    </li>
 
-    
-  
-    
-
-    
-
-    <li>
+      <!-- lastmod date -->
       
-      <span class="date day" data-ts="1750335900" data-df="DD">19</span>
-      <span class="date month small text-muted ms-1" data-ts="1750335900" data-df="MMM">
-        Jun
-      </span>
-      <a href="/posts/sorting-algorithms/">Sorting algorithms</a>
-    </li>
 
-    
-  
-    
-
-    
-
-    <li>
       
-      <span class="date day" data-ts="1750168140" data-df="DD">17</span>
-      <span class="date month small text-muted ms-1" data-ts="1750168140" data-df="MMM">
-        Jun
-      </span>
-      <a href="/posts/lecture-2-circuits-and-packets/">lecture_2_circuits_and_packets</a>
-    </li>
 
-    
+      <div class="d-flex justify-content-between">
+        <!-- author(s) -->
+        <span>
+          
+
+          By
+
+          <em>
+            
+              <a href="https://github.com/vaibhav-mattoo">Vaibhav Mattoo</a>
+            
+          </em>
+        </span>
+
+        <div>
+          <!-- pageviews -->
+          
+
+          <!-- read time -->
+          <!-- Calculate the post's reading time, and display the word count in tooltip -->
+
+
+
+<!-- words per minute -->
+
+
+
+
+
+
+
+
+
+
+<!-- return element -->
+<span
+  class="readtime"
+  data-bs-toggle="tooltip"
+  data-bs-placement="bottom"
+  title="27 words"
+>
+  <em>1 min</em> read</span>
+
+        </div>
+      </div>
+    </div>
+  </header>
+
   
+    <div id="toc-bar" class="d-flex align-items-center justify-content-between invisible">
+      <span class="label text-truncate">Sorting algorithms</span>
+      <button type="button" class="toc-trigger btn me-1">
+        <i class="fa-solid fa-list-ul fa-fw"></i>
+      </button>
+    </div>
+
+    <button id="toc-solo-trigger" type="button" class="toc-trigger btn btn-outline-secondary btn-sm">
+      <span class="label ps-2 pe-1">Contents</span>
+      <i class="fa-solid fa-angle-right fa-fw"></i>
+    </button>
+
+    <dialog id="toc-popup" class="p-0">
+      <div class="header d-flex flex-row align-items-center justify-content-between">
+        <div class="label text-truncate py-2 ms-4">Sorting algorithms</div>
+        <button id="toc-popup-close" type="button" class="btn mx-1 my-1 opacity-75">
+          <i class="fas fa-close"></i>
+        </button>
+      </div>
+      <div id="toc-popup-content" class="px-4 py-3 pb-4"></div>
+    </dialog>
+  
+
+  <div class="content">
+    <h2 id="array-leaders-problem"><span class="me-2">Array leaders problem</span><a href="#array-leaders-problem" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+
+<p>Find all elements of the array such that they are greater than or equal to every element to their right.</p>
+
+<h3 id="bad-approach-on2"><span class="me-2">Bad approach (O(n<sup>2</sup>))</span><a href="#bad-approach-on2" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+
+<div class="language-cpp highlighter-rouge"><div class="code-header">
+        <span data-label-text="Cpp"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>
+</pre></td></tr></tbody></table></code></div></div>
+
+  </div>
+
+  <div class="post-tail-wrapper text-muted">
+    <!-- categories -->
+    
+      <div class="post-meta mb-3">
+        <i class="far fa-folder-open fa-fw me-1"></i>
+        
+          <a href="/categories/dsa/">DSA</a>,
+          <a href="/categories/array-algorithms/">Array Algorithms</a>
+      </div>
+    
+
+    <!-- tags -->
+    
+
+    <div
+      class="
+        post-tail-bottom
+        d-flex justify-content-between align-items-center mt-5 pb-2
+      "
+    >
+      <div class="license-wrapper">
+        
+          
+
+          This post is licensed under 
+        <a href="https://creativecommons.org/licenses/by/4.0/">
+          CC BY 4.0
+        </a>
+         by the author.
+        
+      </div>
+
+      <!-- Post sharing snippet -->
+
+<div class="share-wrapper d-flex align-items-center">
+  <span class="share-label text-muted">Share</span>
+  <span class="share-icons">
+    
+    
     
 
     
 
-    <li>
       
-      <span class="date day" data-ts="1750166160" data-df="DD">17</span>
-      <span class="date month small text-muted ms-1" data-ts="1750166160" data-df="MMM">
-        Jun
-      </span>
-      <a href="/posts/lecture-1-overview/">lecture_1_overview</a>
-    </li>
 
-    
-  
+      <a href="https://twitter.com/intent/tweet?text=Sorting%20algorithms%20-%20Vaibhav%20Mattoo&url=http%3A%2F%2Flocalhost%3A4000%2Fposts%2Farray-leader-second-largest-element-in-the-array%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Twitter" aria-label="Twitter">
+        <i class="fa-fw fa-brands fa-square-x-twitter"></i>
+      </a>
     
 
-    
-
-    <li>
       
-      <span class="date day" data-ts="1749907020" data-df="DD">14</span>
-      <span class="date month small text-muted ms-1" data-ts="1749907020" data-df="MMM">
-        Jun
-      </span>
-      <a href="/posts/changing-your-802-11-nickname/">Hiding Network Attributes - Changing your 802.11 nickname</a>
-    </li>
 
-    
-  
+      <a href="https://www.facebook.com/sharer/sharer.php?title=Sorting%20algorithms%20-%20Vaibhav%20Mattoo&u=http%3A%2F%2Flocalhost%3A4000%2Fposts%2Farray-leader-second-largest-element-in-the-array%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Facebook" aria-label="Facebook">
+        <i class="fa-fw fab fa-facebook-square"></i>
+      </a>
     
 
-    
-
-    <li>
       
-      <span class="date day" data-ts="1749900900" data-df="DD">14</span>
-      <span class="date month small text-muted ms-1" data-ts="1749900900" data-df="MMM">
-        Jun
-      </span>
-      <a href="/posts/getting-started-with-raspberry-pi-5/">Getting started with Raspberry Pi 5</a>
-    </li>
 
-    
-  
+      <a href="https://t.me/share/url?url=http%3A%2F%2Flocalhost%3A4000%2Fposts%2Farray-leader-second-largest-element-in-the-array%2F&text=Sorting%20algorithms%20-%20Vaibhav%20Mattoo" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Telegram" aria-label="Telegram">
+        <i class="fa-fw fab fa-telegram"></i>
+      </a>
     
 
-    
-
-    <li>
       
-      <span class="date day" data-ts="1749838620" data-df="DD">13</span>
-      <span class="date month small text-muted ms-1" data-ts="1749838620" data-df="MMM">
-        Jun
-      </span>
-      <a href="/posts/changing-your-mac-address/">Hiding Network Attributes - Spoofing your MAC address</a>
-    </li>
 
-    </ul>
-  
+      <a href="https://www.reddit.com/submit?url=http%3A%2F%2Flocalhost%3A4000%2Fposts%2Farray-leader-second-largest-element-in-the-array%2F&title=Sorting%20algorithms%20-%20Vaibhav%20Mattoo" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Reddit" aria-label="Reddit">
+        <i class="fa-fw fa-brands fa-square-reddit"></i>
+      </a>
+    
+
+    <button
+      id="copy-link"
+      aria-label="Copy link"
+      class="btn small"
+      data-bs-toggle="tooltip"
+      data-bs-placement="top"
+      title="Copy link"
+      data-title-succeed="Link copied successfully!"
+    >
+      <i class="fa-fw fas fa-link pe-none fs-6"></i>
+    </button>
+  </span>
 </div>
 
     </div>
-  
+    <!-- .post-tail-bottom -->
+  </div>
+  <!-- div.post-tail-wrapper -->
 </article>
+
 
             
           </main>
@@ -777,12 +1022,142 @@
             </div>
 
             
+              
+              
+
+
+
+
+
+
+  <div class="toc-border-cover z-3"></div>
+  <section id="toc-wrapper" class="invisible position-sticky ps-0 pe-4 pb-4">
+    <h2 class="panel-heading ps-3 pb-2 mb-0">Contents</h2>
+    <nav id="toc"></nav>
+  </section>
+
+
+            
           </aside>
         </div>
 
         <div class="row">
           <!-- tail -->
           <div id="tail-wrapper" class="col-12 col-lg-11 col-xl-9 px-md-4">
+            
+              
+              <!-- Recommend the other 3 posts according to the tags and categories of the current post. -->
+
+<!-- The total size of related posts -->
+
+
+<!-- An random integer that bigger than 0 -->
+
+
+<!-- Equals to TAG_SCORE / {max_categories_hierarchy} -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+
+
+
+
+
+
+
+
+
+
+  <aside id="related-posts" aria-labelledby="related-label">
+    <h3 class="mb-4" id="related-label">Further Reading</h3>
+    <nav class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 mb-4">
+      
+        <article class="col">
+          <a href="/posts/sorting-algorithms/" class="post-preview card h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1750335900"
+  data-df="ll"
+  
+>
+  Jun 19, 2025
+</time>
+
+              <h4 class="pt-0 my-2">Sorting algorithms</h4>
+              <div class="text-muted">
+                <p>Some theory and implementation of major array sorting algorithms in C++</p>
+              </div>
+            </div>
+          </a>
+        </article>
+      
+    </nav>
+  </aside>
+  <!-- #related-posts -->
+
+
+            
+              
+              <!-- Navigation buttons at the bottom of the post. -->
+
+<nav class="post-navigation d-flex justify-content-between" aria-label="Post Navigation">
+  
+  
+
+  
+    <a
+      href="/posts/sorting-algorithms/"
+      class="btn btn-outline-primary"
+      aria-label="Older"
+    >
+      <p>Sorting algorithms</p>
+    </a>
+  
+
+  
+    <div class="btn btn-outline-primary disabled" aria-label="Newer">
+      <p>-</p>
+    </div>
+  
+</nav>
+
             
 
             <!-- The Footer -->
@@ -1052,6 +1427,67 @@
     
 
     <!-- Embedded scripts -->
+
+    
+      
+      <!-- The comments switcher -->
+
+  
+  <!-- https://giscus.app/ -->
+<script>
+  (function () {
+    const themeMapper = Theme.getThemeMapper('light', 'dark_dimmed');
+    const initTheme = themeMapper[Theme.visualState];
+
+    let lang = 'en';if (lang.length > 2 && !lang.startsWith('zh')) {
+      lang = lang.slice(0, 2);
+    }
+
+    let giscusAttributes = {
+      src: 'https://giscus.app/client.js',
+      'data-repo': 'vaibhav-mattoo/vaibhav-mattoo.github.io',
+      'data-repo-id': 'R_kgDOO7PGYA',
+      'data-category': 'Announcements',
+      'data-category-id': 'DIC_kwDOO7PGYM4CrqvJ',
+      'data-mapping': 'pathname',
+      'data-strict' : '0',
+      'data-reactions-enabled': '1',
+      'data-emit-metadata': '0',
+      'data-theme': initTheme,
+      'data-input-position': 'top',
+      'data-lang': lang,
+      'data-loading': 'lazy',
+      crossorigin: 'anonymous',
+      async: ''
+    };
+
+    let giscusNode = document.createElement('script');
+    Object.entries(giscusAttributes).forEach(([key, value]) =>
+      giscusNode.setAttribute(key, value)
+    );
+
+    const $footer = document.querySelector('footer');
+    $footer.insertAdjacentElement("beforebegin", giscusNode);
+
+    addEventListener('message', (event) => {
+      if (event.source === window && event.data && event.data.id === Theme.ID) {
+        const newTheme = themeMapper[Theme.visualState];
+
+        const message = {
+          setConfig: {
+            theme: newTheme
+          }
+        };
+
+        const giscus =
+          document.getElementsByClassName('giscus-frame')[0].contentWindow;
+        giscus.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+    });
+  })();
+</script>
+
+
 
     
 

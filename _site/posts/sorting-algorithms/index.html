@@ -532,6 +532,50 @@
 
       
     
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
 
     
   
@@ -547,6 +591,39 @@
       
         
         
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
       
 
       
@@ -727,9 +804,9 @@
   class="readtime"
   data-bs-toggle="tooltip"
   data-bs-placement="bottom"
-  title="1533 words"
+  title="3806 words"
 >
-  <em>8 min</em> read</span>
+  <em>21 min</em> read</span>
 
         </div>
       </div>
@@ -1097,6 +1174,488 @@ $</p>
   <li><strong>All cases are O(n<sup>2</sup>)</strong>: Even when array is already sorted, selection sort must verify that each position contains the minimum by scanning all remaining elements. For position i, it scans positions i+1 to n-1, making $(n-1) + (n-2) + … + 1 = \frac{n(n-1)}{2}$ comparisons total. Hence, O(n<sup>2</sup>). The algorithm does not adapt to existing order in data and has consistent performance.</li>
 </ul>
 
+<h2 id="insertion-sort"><span class="me-2">Insertion sort</span><a href="#insertion-sort" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+
+<ul>
+  <li>Builds the sorted array one element at a time by taking each element from the unsorted portion and inserting it into its correct position in the sorted portion.
+    <ul>
+      <li>In each pass i (starting from 1), we take the element at position i (key) and find its correct position in the already sorted portion (indices 0 to i-1).</li>
+      <li>We shift all elements in the sorted portion that are greater than the key one position to the right, then insert the key at the correct position.</li>
+      <li>After pass i, the first i+1 elements are sorted relative to each other, so the sorted portion grows from left to right.</li>
+      <li>The algorithm is adaptive - it performs well on nearly sorted arrays because elements that are already in correct positions require minimal shifting.</li>
+      <li>Similar to how you might sort playing cards in your hand by picking up each card and inserting it in the right position among the cards you’ve already sorted.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-cpp highlighter-rouge"><div class="code-header">
+        <span data-label-text="Cpp"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+</pre></td><td class="rouge-code"><pre><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;sstream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
+</span>
+<span class="kt">void</span> <span class="nf">insertionsort</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">arr</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">arr</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">key</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">arr</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+      <span class="n">j</span><span class="o">--</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">arr</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">input</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">line</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Enter space-separated numbers: "</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">getline</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="p">,</span> <span class="n">line</span><span class="p">);</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">istringstream</span> <span class="n">iss</span><span class="p">(</span><span class="n">line</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">num</span><span class="p">;</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">iss</span> <span class="o">&gt;&gt;</span> <span class="n">num</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">input</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">num</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Input array : "</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span><span class="n">num</span> <span class="o">:</span> <span class="n">input</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">num</span> <span class="o">&lt;&lt;</span> <span class="s">" "</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="n">insertionsort</span><span class="p">(</span><span class="n">input</span><span class="p">);</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Sorted array : "</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span><span class="n">num</span> <span class="o">:</span> <span class="n">input</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">num</span> <span class="o">&lt;&lt;</span> <span class="s">" "</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+</pre></td></tr></tbody></table></code></div></div>
+
+<h3 id="insertion-sort-complexity-analysis"><span class="me-2">Insertion sort complexity analysis</span><a href="#insertion-sort-complexity-analysis" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+
+<ul>
+  <li><strong>Best case is O(n)</strong> : When array is already sorted, each element at position i only needs to be compared with the element at position i-1. Since arr[i-1] ≤ arr[i], no shifting is required and the while loop executes 0 times. Total of n-1 comparisons with 0 shifts. Hence, O(n).</li>
+  <li><strong>Average case is O(n<sup>2</sup>)</strong> : For randomly ordered elements, each element at position i needs to be compared with approximately half of the preceding elements.
+    <ul>
+      <li>Element at position i has i preceding elements in the sorted portion</li>
+      <li>On average, need to compare with $\frac{i}{2}$ elements and shift $\frac{i}{2}$ positions</li>
+      <li>Expected comparisons for element i: $\frac{i}{2}$</li>
+      <li>Total comparisons: $\sum_{i=1}^{n-1} \frac{i}{2} = \frac{1}{2} \cdot \frac{(n-1)n}{2} \approx \frac{n^2}{4}$</li>
+      <li>Total shifts: Similar magnitude to comparisons</li>
+    </ul>
+  </li>
+  <li><strong>Worst case is O(n<sup>2</sup>)</strong>: When array is sorted in reverse order, each element must be compared with and shifted past all preceding elements. Element at position i requires i comparisons and i shifts. Total comparisons and shifts: $1 + 2 + 3 + … + (n-1) = \frac{n(n-1)}{2}$. Total operations: $n(n-1) \approx n^2$.</li>
+</ul>
+
+<h2 id="merge-sort"><span class="me-2">Merge sort</span><a href="#merge-sort" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+
+<ul>
+  <li>A divide-and-conquer algorithm that recursively divides the array into two halves, sorts each half separately, and then merges the sorted halves back together.
+    <ul>
+      <li><strong>Divide phase</strong>: For array segment from index <code class="language-plaintext highlighter-rouge">left</code> to <code class="language-plaintext highlighter-rouge">right</code>, calculate midpoint as <code class="language-plaintext highlighter-rouge">mid = left + (right - left) / 2</code> to avoid integer overflow. Split into two subarrays: <code class="language-plaintext highlighter-rouge">[left...mid]</code> and <code class="language-plaintext highlighter-rouge">[mid+1...right]</code>.</li>
+      <li><strong>Base case</strong>: When <code class="language-plaintext highlighter-rouge">left &gt;= right</code>, the subarray has 0 or 1 element and is trivially sorted, so return immediately.</li>
+      <li><strong>Recursive calls</strong>: First sort left half <code class="language-plaintext highlighter-rouge">mergesort(arr, left, mid)</code>, then sort right half <code class="language-plaintext highlighter-rouge">mergesort(arr, mid+1, right)</code>.</li>
+      <li><strong>Merge operation</strong>: After both halves are sorted, merge them back together. Create temporary arrays: left subarray has size <code class="language-plaintext highlighter-rouge">n1 = mid - left + 1</code> elements, right subarray has size <code class="language-plaintext highlighter-rouge">n2 = right - mid</code> elements.</li>
+      <li><strong>Why these sizes</strong>: Left subarray spans from <code class="language-plaintext highlighter-rouge">left</code> to <code class="language-plaintext highlighter-rouge">mid</code> inclusive, so size is <code class="language-plaintext highlighter-rouge">mid - left + 1</code>. Right subarray spans from <code class="language-plaintext highlighter-rouge">mid+1</code> to <code class="language-plaintext highlighter-rouge">right</code> inclusive, so size is <code class="language-plaintext highlighter-rouge">right - (mid+1) + 1 = right - mid</code>.</li>
+      <li><strong>Merge process</strong>: Use three pointers - <code class="language-plaintext highlighter-rouge">i</code> for left array, <code class="language-plaintext highlighter-rouge">j</code> for right array, <code class="language-plaintext highlighter-rouge">k</code> for original array starting at <code class="language-plaintext highlighter-rouge">left</code>. Compare <code class="language-plaintext highlighter-rouge">leftArr[i]</code> with <code class="language-plaintext highlighter-rouge">rightArr[j]</code>, place smaller element at <code class="language-plaintext highlighter-rouge">arr[k]</code>, advance corresponding pointer. Continue until one array is exhausted, then copy remaining elements.</li>
+      <li><strong>Stability</strong>: When elements are equal, always take from left array first (<code class="language-plaintext highlighter-rouge">leftArr[i] &lt;= rightArr[j]</code>) to maintain relative order.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-cpp highlighter-rouge"><div class="code-header">
+        <span data-label-text="Cpp"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+</pre></td><td class="rouge-code"><pre>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;sstream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
+</span>
+<span class="kt">void</span> <span class="nf">merge</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">arr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">left</span><span class="p">,</span> <span class="kt">int</span> <span class="n">mid</span><span class="p">,</span> <span class="kt">int</span> <span class="n">right</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="kt">int</span> <span class="n">n1</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="n">left</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">n2</span> <span class="o">=</span> <span class="n">right</span> <span class="o">-</span> <span class="n">mid</span><span class="p">;</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">leftarr</span><span class="p">(</span><span class="n">n1</span><span class="p">);</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">rightarr</span><span class="p">(</span><span class="n">n2</span><span class="p">);</span>
+
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n1</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">leftarr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">left</span> <span class="o">+</span> <span class="n">i</span><span class="p">];</span>
+  <span class="p">}</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n2</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">rightarr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">i</span><span class="p">];</span>
+  <span class="p">}</span>
+  <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="n">left</span><span class="p">;</span>
+  <span class="c1">// i = left array index</span>
+  <span class="c1">// j = right array index</span>
+  <span class="c1">// k = merged array index</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">n1</span> <span class="o">&amp;&amp;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">leftarr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">rightarr</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="p">{</span>
+      <span class="n">arr</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">leftarr</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+      <span class="n">i</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="n">arr</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">rightarr</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+      <span class="n">j</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">k</span><span class="o">++</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">n1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">arr</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">leftarr</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="n">i</span><span class="o">++</span><span class="p">;</span>
+    <span class="n">k</span><span class="o">++</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">j</span> <span class="o">&lt;</span> <span class="n">n2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">arr</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">rightarr</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+    <span class="n">j</span><span class="o">++</span><span class="p">;</span>
+    <span class="n">k</span><span class="o">++</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">mergesort</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">arr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">left</span><span class="p">,</span> <span class="kt">int</span> <span class="n">right</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="n">left</span> <span class="o">+</span> <span class="p">(</span><span class="n">right</span> <span class="o">-</span> <span class="n">left</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="n">mergesort</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">mid</span><span class="p">);</span>
+    <span class="n">mergesort</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">right</span><span class="p">);</span>
+    <span class="n">merge</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">mid</span><span class="p">,</span> <span class="n">right</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">mergesort</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">arr</span><span class="p">)</span> <span class="p">{</span> <span class="n">mergesort</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">arr</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span> <span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">input</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">line</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Enter space-separated numbers: "</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">getline</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="p">,</span> <span class="n">line</span><span class="p">);</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">istringstream</span> <span class="n">iss</span><span class="p">(</span><span class="n">line</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">num</span><span class="p">;</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">iss</span> <span class="o">&gt;&gt;</span> <span class="n">num</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">input</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">num</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Input array : "</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span><span class="n">num</span> <span class="o">:</span> <span class="n">input</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">num</span> <span class="o">&lt;&lt;</span> <span class="s">" "</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="n">mergesort</span><span class="p">(</span><span class="n">input</span><span class="p">);</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Sorted array : "</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span><span class="n">num</span> <span class="o">:</span> <span class="n">input</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">num</span> <span class="o">&lt;&lt;</span> <span class="s">" "</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+</pre></td></tr></tbody></table></code></div></div>
+
+<h3 id="merge-sort-complexity-analysis"><span class="me-2">Merge sort complexity analysis</span><a href="#merge-sort-complexity-analysis" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+
+<ul>
+  <li><strong>Best case is O(n log n)</strong> : Even when array is already sorted, merge sort still divides the array into log n levels and performs n comparisons at each level. The recursive structure ensures consistent depth of log n regardless of input order. At each level, exactly n elements are processed during merging operations.</li>
+  <li><strong>Average case is O(n log n)</strong> : The divide-and-conquer approach guarantees balanced recursion regardless of input distribution.
+    <ul>
+      <li>Array is always divided exactly in half at midpoint, creating a balanced binary tree of recursive calls</li>
+      <li>Tree depth is always ⌊log₂ n⌋ + 1 levels due to binary division</li>
+      <li>Each level processes exactly n elements during the merge operations across all subarrays at that level</li>
+      <li>Total work: n elements × log n levels = n log n comparisons and movements</li>
+      <li>Space complexity: O(n) for temporary arrays during merging, plus O(log n) for recursion stack</li>
+    </ul>
+  </li>
+  <li><strong>Worst case is O(n log n)</strong> : Unlike quicksort, merge sort has no worst input cases because the division strategy is deterministic. The recursive division is always balanced since we split at the calculated midpoint <code class="language-plaintext highlighter-rouge">left + (right - left) / 2</code>. Maximum recursion depth is exactly log n, and each level requires exactly n operations for merging all subarrays at that level. This makes merge sort optimal among comparison-based sorting algorithms with guaranteed performance.</li>
+</ul>
+
+<h2 id="quick-sort"><span class="me-2">Quick sort</span><a href="#quick-sort" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+
+<ul>
+  <li>A divide-and-conquer algorithm that selects a ‘pivot’ element, partitions the array around the pivot, and recursively sorts the subarrays on either side of the pivot.
+    <ul>
+      <li><strong>Pivot selection</strong>: Choose an element from the array as the pivot. Common strategies include first element, last element, random element, or median-of-three.</li>
+      <li><strong>Partition phase</strong>: Rearrange the array so that all elements smaller than the pivot come before it, and all elements greater than the pivot come after it. The pivot is now in its final sorted position.</li>
+      <li><strong>Partition process</strong>: Use two pointers - <code class="language-plaintext highlighter-rouge">i</code> starting from <code class="language-plaintext highlighter-rouge">low-1</code> (before the subarray) and <code class="language-plaintext highlighter-rouge">j</code> iterating from <code class="language-plaintext highlighter-rouge">low</code> to <code class="language-plaintext highlighter-rouge">high-1</code>. When <code class="language-plaintext highlighter-rouge">arr[j] &lt;= pivot</code>, increment <code class="language-plaintext highlighter-rouge">i</code> and swap <code class="language-plaintext highlighter-rouge">arr[i]</code> with <code class="language-plaintext highlighter-rouge">arr[j]</code>. This maintains the invariant that elements from <code class="language-plaintext highlighter-rouge">low</code> to <code class="language-plaintext highlighter-rouge">i</code> are ≤ pivot.</li>
+      <li><strong>Why i starts at low-1</strong>: The variable <code class="language-plaintext highlighter-rouge">i</code> tracks the boundary of the “smaller than pivot” region. Starting at <code class="language-plaintext highlighter-rouge">low-1</code> means initially no elements are in the smaller region. When we find an element ≤ pivot, we first increment <code class="language-plaintext highlighter-rouge">i</code> then swap, effectively expanding the smaller region.</li>
+      <li><strong>Final pivot placement</strong>: After partitioning, swap the pivot (at <code class="language-plaintext highlighter-rouge">high</code>) with <code class="language-plaintext highlighter-rouge">arr[i+1]</code> to place the pivot in its correct position. Return <code class="language-plaintext highlighter-rouge">i+1</code> as the partition index.</li>
+      <li><strong>Recursive calls</strong>: Sort left subarray <code class="language-plaintext highlighter-rouge">quicksort(arr, low, partitionIndex-1)</code> and right subarray <code class="language-plaintext highlighter-rouge">quicksort(arr, partitionIndex+1, high)</code>. The pivot at <code class="language-plaintext highlighter-rouge">partitionIndex</code> is already in correct position.</li>
+      <li><strong>Base case</strong>: When <code class="language-plaintext highlighter-rouge">low &gt;= high</code>, the subarray has 0 or 1 element and is trivially sorted.</li>
+      <li><strong>In-place sorting</strong>: Unlike merge sort, quicksort requires only O(1) additional space for partitioning, making it an in-place algorithm.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-cpp highlighter-rouge"><div class="code-header">
+        <span data-label-text="Cpp"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+</pre></td><td class="rouge-code"><pre><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;sstream&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;utility&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">partition</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">arr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">low</span><span class="p">,</span> <span class="kt">int</span> <span class="n">high</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">pivot</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">high</span><span class="p">];</span>
+  <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">low</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">low</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">high</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">pivot</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">i</span><span class="o">++</span><span class="p">;</span>
+      <span class="n">std</span><span class="o">::</span><span class="n">swap</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">swap</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">arr</span><span class="p">[</span><span class="n">high</span><span class="p">]);</span>
+  <span class="k">return</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">quicksort</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">arr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">low</span><span class="p">,</span> <span class="kt">int</span> <span class="n">high</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">low</span> <span class="o">&lt;</span> <span class="n">high</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">partindex</span> <span class="o">=</span> <span class="n">partition</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">);</span>
+    <span class="n">quicksort</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">partindex</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="n">quicksort</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">partindex</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">high</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">quicksort</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">arr</span><span class="p">)</span> <span class="p">{</span> <span class="n">quicksort</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">arr</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span> <span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">input</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">line</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Enter space-separated numbers: "</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">getline</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="p">,</span> <span class="n">line</span><span class="p">);</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">istringstream</span> <span class="n">iss</span><span class="p">(</span><span class="n">line</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">num</span><span class="p">;</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">iss</span> <span class="o">&gt;&gt;</span> <span class="n">num</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">input</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">num</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Input array : "</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span><span class="n">num</span> <span class="o">:</span> <span class="n">input</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">num</span> <span class="o">&lt;&lt;</span> <span class="s">" "</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="n">quicksort</span><span class="p">(</span><span class="n">input</span><span class="p">);</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Sorted array : "</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span><span class="n">num</span> <span class="o">:</span> <span class="n">input</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">num</span> <span class="o">&lt;&lt;</span> <span class="s">" "</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+</pre></td></tr></tbody></table></code></div></div>
+
+<h3 id="quick-sort-complexity-analysis"><span class="me-2">Quick sort complexity analysis</span><a href="#quick-sort-complexity-analysis" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+
+<ul>
+  <li><strong>Best case is O(n log n)</strong> : When the pivot always divides the array into two equal halves, creating a balanced recursion tree. Each level processes n elements for partitioning, and there are log n levels. This happens when the pivot is always the median element of the subarray.</li>
+  <li><strong>Average case is O(n log n)</strong> : For randomly distributed elements, the pivot on average divides the array into reasonably balanced partitions.
+    <ul>
+      <li>Even if partitions are not exactly equal (e.g., 1/4 and 3/4 split), the recursion depth remains O(log n)</li>
+      <li>Each level still processes n elements total across all partitions</li>
+      <li>Expected number of comparisons: approximately 1.39 n log n</li>
+      <li>Space complexity: O(log n) for recursion stack in average case</li>
+      <li>Performs better than merge sort in practice due to better cache locality and fewer data movements</li>
+    </ul>
+  </li>
+  <li><strong>Worst case is O(n²)</strong> : When the pivot is always the smallest or largest element, creating maximally unbalanced partitions. This happens with already sorted arrays (ascending or descending) when using first/last element as pivot. Each recursive call reduces array size by only 1, leading to n levels of recursion with n, n-1, n-2, … comparisons respectively. Total: n + (n-1) + (n-2) + … + 1 = n(n+1)/2 ≈ n²/2 comparisons. Space complexity becomes O(n) due to deep recursion stack.</li>
+</ul>
+
+<h2 id="heap-sort"><span class="me-2">Heap sort</span><a href="#heap-sort" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+
+<ul>
+  <li>A comparison-based sorting algorithm that uses a binary heap data structure to sort elements by repeatedly extracting the maximum element from a max-heap.
+    <ul>
+      <li><strong>Heap property</strong>: A complete binary tree where each parent node is greater than or equal to its children (max-heap). For array representation, parent of element at index <code class="language-plaintext highlighter-rouge">i</code> is at <code class="language-plaintext highlighter-rouge">(i-1)/2</code>, left child at <code class="language-plaintext highlighter-rouge">2*i+1</code>, right child at <code class="language-plaintext highlighter-rouge">2*i+2</code>.</li>
+      <li><strong>Build heap phase</strong>: Convert the unsorted array into a max-heap by calling heapify on all non-leaf nodes from bottom to top. Start from index <code class="language-plaintext highlighter-rouge">n/2-1</code> (last non-leaf node) down to 0.</li>
+      <li><strong>Heapify operation</strong>: For a node at index <code class="language-plaintext highlighter-rouge">i</code>, compare it with its children and swap with the largest child if necessary. Recursively heapify the affected subtree to maintain heap property throughout.</li>
+      <li><strong>Why start from n/2-1</strong>: In a complete binary tree with n nodes, nodes from index <code class="language-plaintext highlighter-rouge">n/2</code> to <code class="language-plaintext highlighter-rouge">n-1</code> are leaf nodes. Non-leaf nodes are from 0 to <code class="language-plaintext highlighter-rouge">n/2-1</code>, so we heapify from the last non-leaf node upward.</li>
+      <li><strong>Sorting phase</strong>: Repeatedly extract the maximum element (root) by swapping it with the last element, reduce heap size by 1, and heapify the root to restore heap property. The extracted elements accumulate at the end in sorted order.</li>
+      <li><strong>In-place sorting</strong>: The algorithm sorts within the original array - the heap occupies the unsorted portion while sorted elements accumulate at the end.</li>
+      <li><strong>Unstable sorting</strong>: Due to long-distance swaps during heapify operations, equal elements may change their relative order.</li>
+    </ul>
+  </li>
+</ul>
+
+
   </div>
 
   <div class="post-tail-wrapper text-muted">
@@ -1119,6 +1678,11 @@ $</p>
             href="/tags/named-algorithms/"
             class="post-tag no-text-decoration"
           >Named Algorithms</a>
+        
+          <a
+            href="/tags/sorting/"
+            class="post-tag no-text-decoration"
+          >Sorting</a>
         
       </div>
     
@@ -1237,6 +1801,13 @@ $</p>
         
         
         <li class="text-truncate lh-lg">
+          <a href="/posts/array-leader-second-largest-element-in-the-array/">Sorting algorithms</a>
+        </li>
+      
+        
+        
+        
+        <li class="text-truncate lh-lg">
           <a href="/posts/lecture-2-circuits-and-packets/">lecture_2_circuits_and_packets</a>
         </li>
       
@@ -1252,13 +1823,6 @@ $</p>
         
         <li class="text-truncate lh-lg">
           <a href="/posts/lecture-1-overview/">lecture_1_overview</a>
-        </li>
-      
-        
-        
-        
-        <li class="text-truncate lh-lg">
-          <a href="/posts/changing-your-802-11-nickname/">Hiding Network Attributes - Changing your 802.11 nickname</a>
         </li>
       
     </ul>
@@ -1385,6 +1949,44 @@ $</p>
         
         
 
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
 
 
   <section>
@@ -1405,6 +2007,9 @@ $</p>
       
         
         <a class="post-tag btn btn-outline-primary" href="/tags/raspberry-pi-configuration/">Raspberry Pi Configuration</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/sorting/">Sorting</a>
       
     </div>
   </section>
@@ -1465,6 +2070,17 @@ $</p>
 
   
     
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
 
@@ -1474,6 +2090,43 @@ $</p>
 
 
 
+
+
+  <aside id="related-posts" aria-labelledby="related-label">
+    <h3 class="mb-4" id="related-label">Further Reading</h3>
+    <nav class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 mb-4">
+      
+        <article class="col">
+          <a href="/posts/array-leader-second-largest-element-in-the-array/" class="post-preview card h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1750335900"
+  data-df="ll"
+  
+>
+  Jun 19, 2025
+</time>
+
+              <h4 class="pt-0 my-2">Sorting algorithms</h4>
+              <div class="text-muted">
+                <p>Some theory and implementation of major array sorting algorithms in C++</p>
+              </div>
+            </div>
+          </a>
+        </article>
+      
+    </nav>
+  </aside>
+  <!-- #related-posts -->
 
 
             
@@ -1495,9 +2148,13 @@ $</p>
   
 
   
-    <div class="btn btn-outline-primary disabled" aria-label="Newer">
-      <p>-</p>
-    </div>
+    <a
+      href="/posts/array-leader-second-largest-element-in-the-array/"
+      class="btn btn-outline-primary"
+      aria-label="Newer"
+    >
+      <p>Sorting algorithms</p>
+    </a>
   
 </nav>
 
@@ -1659,6 +2316,44 @@ $</p>
         
         
 
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
 
 
   <section>
@@ -1679,6 +2374,9 @@ $</p>
       
         
         <a class="post-tag btn btn-outline-primary" href="/tags/raspberry-pi-configuration/">Raspberry Pi Configuration</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/sorting/">Sorting</a>
       
     </div>
   </section>
