@@ -1,14 +1,13 @@
 ---
-title: Sorting algorithms
-description: Some theory and implementation of major array sorting algorithms in C++
+title: Array leaders, Second largest element in the array
+description: Array algorithms related to finding some sort of maximum in the array
 layout: post
-math: true
 categories: [DSA, Array Algorithms]
 tags: []
 date: 2025-06-19 05:25 -0700
 ---
 
-## Array leaders problem
+# Array leaders problem
 
 - Find all elements of the array such that they are greater than or equal to every element to their right.
 
@@ -80,7 +79,7 @@ int main(int argc, char *argv[]) {
 }
 ```
 
-## Second largest element in the array problem
+# Second largest element in the array problem
 
 - Find the second largest value in the array
 

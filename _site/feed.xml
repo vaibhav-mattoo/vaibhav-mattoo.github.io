@@ -4,7 +4,7 @@
   <id>http://localhost:4000/</id>
   <title>Vaibhav Mattoo</title>
   <subtitle>A collection of notes I about various topics.</subtitle>
-  <updated>2025-06-20T07:40:49-07:00</updated>
+  <updated>2025-06-20T08:18:46-07:00</updated>
   <author>
     <name>Vaibhav Mattoo</name>
     <uri>http://localhost:4000/</uri>
@@ -20,8 +20,8 @@
 
   
   <entry>
-    <title>Sorting algorithms</title>
-    <link href="http://localhost:4000/posts/array-leader-second-largest-element-in-the-array/" rel="alternate" type="text/html" title="Sorting algorithms" />
+    <title>Array leaders, Second largest element in the array</title>
+    <link href="http://localhost:4000/posts/array-leader-second-largest-element-in-the-array/" rel="alternate" type="text/html" title="Array leaders, Second largest element in the array" />
     <published>2025-06-19T05:25:00-07:00</published>
   
     <updated>2025-06-19T05:25:00-07:00</updated>
@@ -40,7 +40,7 @@
     
   
 
-  <summary>Some theory and implementation of major array sorting algorithms in C++</summary>
+  <summary>Array algorithms related to finding some sort of maximum in the array</summary>
 
   </entry>
 
@@ -50,7 +50,7 @@
     <link href="http://localhost:4000/posts/sorting-algorithms/" rel="alternate" type="text/html" title="Sorting algorithms" />
     <published>2025-06-19T05:25:00-07:00</published>
   
-    <updated>2025-06-19T05:25:00-07:00</updated>
+    <updated>2025-06-20T08:16:08-07:00</updated>
   
     <id>http://localhost:4000/posts/sorting-algorithms/</id>
     <content type="text/html" src="http://localhost:4000/posts/sorting-algorithms/" />
