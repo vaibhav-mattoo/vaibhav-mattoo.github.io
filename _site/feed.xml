@@ -4,7 +4,7 @@
   <id>http://localhost:4000/</id>
   <title>Vaibhav Mattoo</title>
   <subtitle>A collection of notes I about various topics.</subtitle>
-  <updated>2025-06-20T08:18:46-07:00</updated>
+  <updated>2025-06-22T20:42:00-07:00</updated>
   <author>
     <name>Vaibhav Mattoo</name>
     <uri>http://localhost:4000/</uri>
@@ -20,11 +20,37 @@
 
   
   <entry>
+    <title>Dutch National Flag Algorithm</title>
+    <link href="http://localhost:4000/posts/dutch-national-flag-algorithm/" rel="alternate" type="text/html" title="Dutch National Flag Algorithm" />
+    <published>2025-06-20T08:20:00-07:00</published>
+  
+    <updated>2025-06-20T08:20:00-07:00</updated>
+  
+    <id>http://localhost:4000/posts/dutch-national-flag-algorithm/</id>
+    <content type="text/html" src="http://localhost:4000/posts/dutch-national-flag-algorithm/" />
+    <author>
+      <name>Vaibhav Mattoo</name>
+    </author>
+
+  
+    
+    <category term="DSA" />
+    
+    <category term="Array Algorithms" />
+    
+  
+
+  <summary>Array algorithms to sort an array of three elements in O(n) and O(1) space</summary>
+
+  </entry>
+
+  
+  <entry>
     <title>Array leaders, Second largest element in the array</title>
     <link href="http://localhost:4000/posts/array-leader-second-largest-element-in-the-array/" rel="alternate" type="text/html" title="Array leaders, Second largest element in the array" />
     <published>2025-06-19T05:25:00-07:00</published>
   
-    <updated>2025-06-19T05:25:00-07:00</updated>
+    <updated>2025-06-20T08:19:12-07:00</updated>
   
     <id>http://localhost:4000/posts/array-leader-second-largest-element-in-the-array/</id>
     <content type="text/html" src="http://localhost:4000/posts/array-leader-second-largest-element-in-the-array/" />
@@ -119,32 +145,6 @@
   
 
   <summary>Basic definition of network and structure of internet</summary>
-
-  </entry>
-
-  
-  <entry>
-    <title>Hiding Network Attributes - Changing your 802.11 nickname</title>
-    <link href="http://localhost:4000/posts/changing-your-802-11-nickname/" rel="alternate" type="text/html" title="Hiding Network Attributes - Changing your 802.11 nickname" />
-    <published>2025-06-14T06:17:00-07:00</published>
-  
-    <updated>2025-06-14T06:17:00-07:00</updated>
-  
-    <id>http://localhost:4000/posts/changing-your-802-11-nickname/</id>
-    <content type="text/html" src="http://localhost:4000/posts/changing-your-802-11-nickname/" />
-    <author>
-      <name>Vaibhav Mattoo</name>
-    </author>
-
-  
-    
-    <category term="Security" />
-    
-    <category term="Anonymity" />
-    
-  
-
-  <summary>Various ways to change your 802.11 nickname to avoid detection</summary>
 
   </entry>
 
