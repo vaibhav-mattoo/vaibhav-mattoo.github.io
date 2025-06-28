@@ -199,4 +199,143 @@ nixos-option boot.kernelModules
 # [ "tun" "ipv6" "loop" ... ]
 ```
 
+- NixOS has two styles of package management:
+
+  - **Declarative** : where you declare packages in configuration.nix, need root and ensures consistent set of binaries
+  - **Ad hoc**: Installing, upgrading and uninstalling packages using nix-env command, can so this as a non sudo user, allows mixing packages from different nixpkgs versions.
+
+  - For declarative package management we can specify the packages in `environment.systemPackages`
+  - To get a list of available packages we have the command : 
+
+  ```zsh
+  nix-env -qaP 'package_name' --description
+
+  # The above command is very slow since it evaluates the entire NixPkgs package set (over 60,000 packages)\
+
+  # A faster way to do this is to use targetted attribute paths like:
+   nix-env -qaP -A nixpkgs.package_name
+
+
+  ```
+
+  - This command will return an output like `nixos.firefox   firefox-23.0   Mozilla Firefox - the browser, reloaded` here the forst column is the attribute name, where the nixos prefix tells use we can get the package from the nixos channel, while putting in declarative configuration use pkgs prefix.
+  - To uninstall a package we need to remove it from environment.systemPackages and run nixos-rebuild switch.
+
+  - To configure the nixpkgs repo itself we can set the `nixpkgs.config` option, like:
+  
+  ```nix
+  {
+    nixpkgs.config = {
+      allowUnfree = true;
+    };
+  }
+  ```
+
+  - Nixpkgs currently doesnt have a way to query available package configuration options but some packages have options to change optional functionality or other aspects.
+
+  - We can also change or disable dependencies like if Emacs has a depedency on GTK2 by default and we want to build it using gtk3 then we can do:
+
+  ```nix
+    environment.systemPackages = [ (pkgs.emacs.override { gtk = pkgs.gtk3; }) ];
+  ```
+
+- Here the `override` function ammends the arguments to the function that produces Emacs.
+
+- To change the package even more we have the `overrideAttrs` function which would allow changing the source code of the package, like : 
+```nix
+{
+  environment.systemPackages = [
+    (pkgs.emacs.overrideAttrs (oldAttrs: {
+      name = "emacs-25.0-pre";
+      src = /path/to/my/emacs/tree;
+    }))
+  ];
+}
+```
+
+- Here overrideAttrs takes the nix derivation produces by pkgs.emacs and produces a new derivation of the package where the original name and src attributes have been replaced.
+- These overrides are not global and do not affect the original package, and other packages continue to depend on the original package instead of the custom package, which means oyu would have two instances of the package. If we want everything to depend on the custom package only we can apply a global oevrride : 
+
+```nix
+{
+  nixpkgs.config.packageOverrides = pkgs:
+    { emacs = pkgs.emacs.override { gtk = pkgs.gtk3; };
+    };
+}
+```
+
+- If we have a package which is not available in nixos, we can add the package from outside the nixpkgs tree.
+
+```nix
+
+# in configuration.nix
+{
+  environment.systemPackages = [ (import ./my-hello.nix) ];
+}
+
+# then in a file called my-hello.nix
+
+with import <nixpkgs> {}; # bring all of Nixpkgs into scope
+
+stdenv.mkDerivation rec {
+  name = "hello-2.8";
+  src = fetchurl {
+    url = "mirror://gnu/hello/${name}.tar.gz";
+    hash = "sha256-5rd/gffPfa761Kn1tl3myunD8TuM+66oy1O7XqVGDXM=";
+  };
+}
+
+```
+
+- We can test the package like :
+
+```zsh
+nix-build my-hello.nix
+
+./result/bin/hello
+
+# returns "Hello, world!"
+```
+
+- We can also use pre built executables, but most of them will not work on nix except flatpaks and appimages.
+- To add support for appimahes we need to add these to configuration.nix
+
+```nix
+  programs.appimage.enable = true;
+  programs.appimage.binfmt = true;
+```
+
+- Then when we need to run the appimage we can do `appimage-run foo.appimage`
+
+
+### Ad Hoc Package management
+
+- We can install and uninstall packages from the command line using nix-env. If we envoke this as root then the package is installed in the nix profile `/nix/var/nix/profiles/default` but if we dont use sudo then then package will be in `/nix/var/nix/profiles/per-user/username/profile` and will not be visible to other users.
+
+- The -A flag specifies the package by the attribute name; without it the package is installed bu matching against its package name which is slow as requires matching against all nix packages, and may be ambiguous if multiple matching packages.
+- Since packages come from the nixos channel we upgrade packages by updating to the latest version of the nixos channel by :
+
+```zsh
+nix-channel --update nixos
+nix-env -iA package_name
+```
+
+- Other packages in the profile are not affected, which is what seperates the ad hoc style from declarative style, where running nixos-rebuild switch causes all packages to be updated to their current versions in the nixos channel. We can upgrade all packages for which there is a current version in ad hoc by :
+
+```zsh
+nix-env -u '*'
+```
+
+- To uninstall a package in ad hoc method we need to use the -e flag:
+
+```zsh
+nix-env -e thunderbird
+```
+
+- To rollback an undesirable nix-env action we have:
+
+```zsh
+nix-env --rollback
+```
+
 
