@@ -107,5 +107,4 @@ Edit your crontab with `crontab -e` and add the line `@reboot macchanger -r <int
 
 ---
 
-
 ## Footnotes
