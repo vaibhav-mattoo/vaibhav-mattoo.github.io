@@ -122,8 +122,8 @@ const educationInfo = {
       duration: "Graduating May 2026",
       desc: "GPA: 3.98/4.0",
       descBullets: [
-        "Completed coursework in Machine Learning, Deep Generative Models, Operating Systems, Computer Security, Advanced Distributed Systems, Networked IoT Devices, Computer Architecture, Data Structures and Algorithms, Quantum Information Theory, GPU Parallel Programming, Digital Signal Processing, Digital Systems and FPGA programming, Analog IC Design",
-        "Graduating with Highest Honors, James Scholar, Technical Lead at OpenSource at Illinois, Deans List (every semester)"
+        "Graduating with Highest Honors, James Scholar, Technical Lead at OpenSource at Illinois, Deans List (every semester)",
+        "Completed coursework in Machine Learning, Deep Generative Models, Operating Systems, Computer Security, Advanced Distributed Systems, Networked IoT Devices, Computer Architecture, Data Structures and Algorithms, Quantum Information Theory, GPU Parallel Programming, Digital Signal Processing, Digital Systems and FPGA programming, Analog IC Design"
       ]
     }
   ]
@@ -151,37 +151,46 @@ const techStack = {
 };
 
 // Work experience section
-
 const workExperiences = {
-  display: true, //Set it to true to show workExperiences Section
+  display: true,
   experience: [
     {
-      role: "Software Engineer",
-      company: "Facebook",
-      companylogo: require("./assets/images/facebookLogo.png"),
-      date: "June 2018 – Present",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      role: "Undergraduate Researcher",
+      company: "Information Trust Institute, University of Illinois Urbana-Champaign",
+      companylogo: require("./assets/images/Illinois_iti_logo.png"),
+      date: "May 2025 – Present",
+      desc: "Conducting advanced threat modeling and red-team attack simulations targeting trusted execution environments within Tor relay Bento nodes.",
       descBullets: [
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+        "Implemented side channel exploits and privilege escalation techniques for security analysis.",
+        "Enhanced Bento architecture with dynamic CDN-style replication for robust load balancing and automated failover to mitigate Layer 7 DDoS attacks on onion services."
       ]
     },
     {
-      role: "Front-End Developer",
-      company: "Quora",
-      companylogo: require("./assets/images/quoraLogo.png"),
-      date: "May 2017 – May 2018",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      role: "NCSA SPIN Research Intern",
+      company: "National Center for Supercomputing Applications",
+      companylogo: require("./assets/images/ncsa_logo.png"),
+      date: "August 2024 – May 2025",
+      desc: "Deployed and optimized AlphaFold distributed platform with GPU acceleration on Delta supercomputers.",
+      descBullets: [
+        "Set up distributed task allocation using Ray and SLURM across multiple GPUs and CPUs for AI training and inference.",
+        "Migrated platform from Alphafold2 to Alphafold3, achieving 36% speedup through amino acid sequence compression.",
+        "Improved CPU performance with SSD cache staging of training data for efficient data tiering in HPC environments."
+      ]
     },
     {
-      role: "Software Engineer Intern",
-      company: "Airbnb",
-      companylogo: require("./assets/images/airbnbLogo.png"),
-      date: "Jan 2015 – Sep 2015",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      role: "Honors Electronics Design Lab Course Assistant",
+      company: "University of Illinois Urbana-Champaign",
+      companylogo: require("./assets/images/Illinois_logo.png"),
+      date: "August 2024 – Present",
+      desc: "Mentored students in circuit design, robotics, and lab equipment usage in the electronics design lab.",
+      descBullets: [
+        "Conducted workshops on CAD software, soldering techniques, and circuit design patterns.",
+        "Supported hands-on labs involving oscilloscopes, 3D printers, and prototyping."
+      ]
     }
   ]
 };
+
 
 /* Your Open Source Section to View Your Github Pinned Projects
 To know how to get github key look at readme.md */
@@ -338,7 +347,7 @@ const podcastSection = {
   podcast: [
     "https://anchor.fm/codevcast/embed/episodes/DevStory---Saad-Pasta-from-Karachi--Pakistan-e9givv/a-a15itvo"
   ],
-  display: true // Set false to hide this section, defaults to true
+  display: false // Set false to hide this section, defaults to true
 };
 
 // Resume Section
@@ -354,8 +363,8 @@ const contactInfo = {
   title: emoji("Contact Me ☎️"),
   subtitle:
     "Discuss a project or just want to say hi? My Inbox is open for all.",
-  number: "+92-0000000000",
-  email_address: "saadpasta70@gmail.com"
+  number: "+1-217-493-8071",
+  email_address: "vmattoo2@illinois.edu"
 };
 
 // Twitter Section
@@ -365,7 +374,7 @@ const twitterDetails = {
   display: true // Set true to display this section, defaults to false
 };
 
-const isHireable = false; // Set false if you are not looking for a job. Also isHireable will be display as Open for opportunities: Yes/No in the GitHub footer
+const isHireable = true; // Set false if you are not looking for a job. Also isHireable will be display as Open for opportunities: Yes/No in the GitHub footer
 
 export {
   illustration,
