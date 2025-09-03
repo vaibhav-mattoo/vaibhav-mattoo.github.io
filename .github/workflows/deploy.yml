@@ -1,6 +1,6 @@
 name: Build and Deploy
 env:
-  CI: false
+  CI: true
   GITHUB_USERNAME: ${{ github.repository_owner }}
   REACT_APP_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This is automatically set by Github Actions
   USE_GITHUB_DATA: "true"
@@ -24,10 +24,10 @@ jobs:
       - name: Setup Node.js 🔧
         uses: actions/setup-node@v3.8.1
         with:
-          node-version: 18.x
+          node-version: 20.x
 
-      - name: Update npm 🚀
-        run: npm install -g npm@latest
+      # - name: Update npm 🚀
+      #   run: npm install -g npm@latest
 
       - name: Install and Build 🔧 # Build the Project
         run: |
