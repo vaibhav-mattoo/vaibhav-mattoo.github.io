@@ -117,7 +117,7 @@ const educationInfo = {
   schools: [
     {
       schoolName: "University of Illinois Urbana-Champaign",
-      logo: require("./assets/images/Illinois_logo.png.png"),
+      logo: require("./assets/images/Illinois_logo.png"),
       subHeader: "Bachelor of Science in Computer Engineering",
       duration: "Graduating May 2026",
       desc: "GPA: 3.98/4.0",
