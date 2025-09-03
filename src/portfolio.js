@@ -72,7 +72,7 @@ https://fontawesome.com/icons?d=gallery */
     },
     {
       skillName: "C/C++",
-      fontAwesomeClassname: "fab fa-code"
+      fontAwesomeClassname: "fas fa-code"
     },
     {
       skillName: "Python",
@@ -84,11 +84,11 @@ https://fontawesome.com/icons?d=gallery */
     },
     {
       skillName: "SystemVerilog",
-      fontAwesomeClassname: "fab fa-cogs"
+      fontAwesomeClassname: "fas fa-microchip"
     },
     {
       skillName: "Go",
-      fontAwesomeClassname: "fab fa-golang"
+      fontAwesomeClassname: "fas fa-terminal"
     },
     {
       skillName: "Linux",
