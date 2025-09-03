@@ -49,18 +49,17 @@ const socialMediaLinks = {
 
 const skillsSection = {
   title: "What I do",
-  subTitle: "Developing open source applications, embedded systems, advanced machine learning, secure network protocols, and innovative computer architecture and digital circuitry.",
+  subTitle:
+    "Developing open source applications, embedded systems, advanced machine learning, secure network protocols, and innovative computer architecture and digital circuitry.",
   skills: [
     emoji(
       "⚡ Building secure distributed systems and anonymous communication protocols"
     ),
-    emoji("⚡ Designing effective machine learning pipelines and accelerating computations with GPUs"),
     emoji(
-      "⚡ Developing embedded and IoT software with Rust and C/C++"
+      "⚡ Designing effective machine learning pipelines and accelerating computations with GPUs"
     ),
-    emoji(
-      "⚡ Creating interactive user interfaces with Flutter and Tauri"
-    )
+    emoji("⚡ Developing embedded and IoT software with Rust and C/C++"),
+    emoji("⚡ Creating interactive user interfaces with Flutter and Tauri")
   ],
 
   /* Make Sure to include correct Font Awesome Classname to view your icon
