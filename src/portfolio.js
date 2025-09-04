@@ -156,7 +156,8 @@ const workExperiences = {
   experience: [
     {
       role: "Undergraduate Researcher",
-      company: "Information Trust Institute, University of Illinois Urbana-Champaign",
+      company:
+        "Information Trust Institute, University of Illinois Urbana-Champaign",
       companylogo: require("./assets/images/Illinois_iti_logo.png"),
       date: "May 2025 – Present",
       desc: "Conducting advanced threat modeling and red-team attack simulations targeting trusted execution environments within Tor relay Bento nodes.",
@@ -190,7 +191,6 @@ const workExperiences = {
     }
   ]
 };
-
 
 /* Your Open Source Section to View Your Github Pinned Projects
 To know how to get github key look at readme.md */
